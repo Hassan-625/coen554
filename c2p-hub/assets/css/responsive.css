@@ -1,0 +1,458 @@
+/* C2P Hub - responsive.css. Mobile-first: every rule sits in a min-width query and only adds. */
+
+/* 480px - LARGE PHONES */
+
+@media screen and (min-width: 480px) {
+  :root {
+    --gutter: var(--space-5);
+    --fs-3xl: 2.5rem;
+    --fs-4xl: 3rem;
+  }
+
+  .hero__actions {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .grid--2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .event {
+    grid-template-columns: auto 1fr;
+    align-items: start;
+  }
+
+  .footer-bottom {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+/* 768px - TABLETS */
+
+@media screen and (min-width: 768px) {
+  :root {
+    --gutter: var(--space-6);
+    --header-height: 76px;
+    --fs-lg: 1.3125rem;
+    --fs-xl: 1.625rem;
+    --fs-2xl: 2rem;
+    --fs-3xl: 2.75rem;
+    --fs-4xl: 3.5rem;
+  }
+
+  .section { padding-block: var(--space-9); }
+  .section--tight { padding-block: var(--space-8); }
+  .section--loose { padding-block: var(--space-10); }
+
+  /* Still the checkbox menu here, but the links can lay out in columns. */
+  .nav-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-1) var(--space-2);
+    padding-block: var(--space-4) var(--space-5);
+  }
+
+  /* Hero switches axis here: render to the right half, veil from vertical to horizontal, copy left. */
+  .hero {
+    padding-block: var(--space-10) var(--space-10);
+    text-align: left;
+  }
+
+  .hero__eyebrow {
+    justify-content: flex-start;
+  }
+
+  .hero__eyebrow::before {
+    display: block;
+  }
+
+  .hero h1 {
+    font-size: var(--fs-4xl);
+  }
+
+  .hero__lede {
+    font-size: var(--fs-lg);
+    margin-inline: 0;
+  }
+
+  /* Sized by height, anchored at 44% so it sits level with the headline, not the section centre. */
+  .hero__bg img {
+    top: 44%;
+    left: auto;
+    right: -3%;
+    width: auto;
+    height: min(66%, 400px);
+    transform: translate(0, -50%);
+    opacity: 0.5;
+    animation-name: hero-drift-side;
+  }
+
+  /* Stops set by measured contrast: full opacity to 50%, 0.80 at 62%, keeping muted text above 4.5:1. */
+  .hero__veil {
+    background:
+      linear-gradient(
+        to right,
+        var(--color-white) 0%,
+        var(--color-white) 50%,
+        rgba(255, 255, 255, 0.80) 62%,
+        rgba(255, 255, 255, 0.35) 78%,
+        rgba(255, 255, 255, 0) 100%
+      );
+  }
+
+  /* A grid, not a max-width: narrowing the centred container would unalign it from the header. */
+  .hero__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 62%) 1fr;
+  }
+
+  .hero__inner > * {
+    grid-column: 1;
+  }
+
+  /* In a split layout the buttons share the headline's left edge. */
+  .hero__actions {
+    justify-content: flex-start;
+  }
+
+  .hero__facts {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-5);
+  }
+
+  @keyframes hero-drift-side {
+    from { opacity: 0; transform: translate(18px, -50%) scale(1.03); }
+    to   { opacity: 0.5; transform: translate(0, -50%) scale(1); }
+  }
+
+  /* --- Grids ----------------------------------------------------------- */
+
+  .grid--2,
+  .grid--3,
+  .grid--4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .grid {
+    gap: var(--space-5);
+  }
+
+  .arc {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .stat-block {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .gallery {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-4);
+  }
+
+  /* --- Split layouts --------------------------------------------------- */
+
+  .feature {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: var(--space-6);
+    gap: var(--space-7);
+  }
+
+  .split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-7);
+    align-items: center;
+  }
+
+  .split--sidebar {
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    align-items: start;
+  }
+
+  /* --- Forms ----------------------------------------------------------- */
+
+  .form-grid--2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .field--full {
+    grid-column: 1 / -1;
+  }
+
+  /* --- Footer ---------------------------------------------------------- */
+
+  .footer-top {
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 2fr);
+    gap: var(--space-8);
+  }
+
+  .footer-nav-groups {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  /* Wide enough for a left-aligned heading to read as anchored, not adrift. */
+  .page-banner {
+    padding-block: var(--space-8) var(--space-8);
+    text-align: left;
+  }
+
+  .page-banner .breadcrumb {
+    justify-content: flex-start;
+  }
+
+  .page-banner p {
+    margin-inline: 0;
+  }
+
+  .cta-band {
+    padding: var(--space-9) var(--space-7);
+  }
+}
+
+/* 1024px - LAPTOPS */
+
+@media screen and (min-width: 1024px) {
+  :root {
+    --fs-2xl: 2.25rem;
+    --fs-3xl: 3rem;
+    /* Held at the 768px value; 4rem overflowed the hero's 62% text column. */
+    --fs-4xl: 3.5rem;
+  }
+
+  .grid--3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .grid--4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .arc {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  /* Connector line running through the concept -> production steps. */
+  .arc {
+    position: relative;
+  }
+
+  .arc::before {
+    content: "";
+    position: absolute;
+    top: 46px;
+    left: 8%;
+    right: 8%;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      var(--color-blue-tint-strong) 12%,
+      var(--color-blue-tint-strong) 88%,
+      transparent
+    );
+    z-index: 0;
+  }
+
+  .arc__step {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Navigation switches from the checkbox panel to a permanent horizontal bar. */
+
+  .nav-toggle-label {
+    display: none;
+  }
+
+  .site-nav {
+    position: static;
+    display: block;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    margin-inline: auto;
+  }
+
+  .nav-list {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0;
+    gap: var(--space-1);
+  }
+
+  .nav-link {
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--fs-xs);
+    border-radius: var(--radius-pill);
+    white-space: nowrap;
+  }
+
+  /* Underline marker for the current page, in addition to the tint. */
+  .nav-link[aria-current="page"] {
+    background: var(--color-blue-tint);
+    box-shadow: inset 0 -2px 0 var(--color-blue);
+  }
+
+  .brand {
+    margin-right: var(--space-4);
+  }
+
+  /* Annotation cards lift out of flow and overlap the hero image from here up. */
+
+  .hero__stage {
+    max-width: 980px;
+    margin-inline: auto;
+  }
+
+  .annotation {
+    position: absolute;
+    width: 250px;
+    margin-top: 0;
+    z-index: 3;
+  }
+
+  /* Positions clear the pipeline labels in the diagram rather than sitting at arbitrary offsets. */
+  .annotation--tl {
+    top: 7%;
+    left: -22px;
+  }
+
+  .annotation--tr {
+    top: 7%;
+    right: -22px;
+  }
+
+  .annotation--bl {
+    bottom: -28px;
+    left: 8%;
+  }
+
+  .feature {
+    padding: var(--space-7);
+    gap: var(--space-8);
+  }
+
+  .cta-band {
+    padding: var(--space-10) var(--space-8);
+  }
+
+  .site-footer {
+    padding-top: var(--space-9);
+  }
+
+  .footer-top {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 2fr) minmax(0, 1.1fr);
+  }
+}
+
+/* 1280px - LARGE DESKTOPS */
+
+@media screen and (min-width: 1280px) {
+  :root {
+    --gutter: var(--space-6);
+    /* 4.25rem pushed "tomorrow." onto a third line; 3.75rem keeps the two the <br> is written for. */
+    --fs-4xl: 3.75rem;
+  }
+
+  /* Only here is there room for the nav bar and a header button on one row. */
+  .header-cta {
+    display: inline-flex;
+  }
+
+  .nav-link {
+    font-size: var(--fs-sm);
+  }
+
+  .hero {
+    padding-block: var(--space-11) var(--space-10);
+  }
+
+  .section--loose {
+    padding-block: var(--space-11);
+  }
+
+  .annotation {
+    width: 272px;
+  }
+
+  .annotation--tl { left: -60px; }
+  .annotation--tr { right: -60px; }
+}
+
+/* PRINT - strips navigation chrome and interactive affordances. */
+
+@media print {
+  .site-header,
+  .site-footer,
+  .nav-toggle-label,
+  .cta-band,
+  .lightbox,
+  .btn {
+    display: none !important;
+  }
+
+  body {
+    color: #000;
+    background: #fff;
+  }
+
+  /* Entrances start at opacity 0, so without this the hero could print as a blank block. */
+  .hero__inner > *,
+  .hero__facts > *,
+  .section-head {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* The logo render is a background flourish; it only wastes toner. */
+  .hero__bg {
+    display: none !important;
+  }
+
+  /* Photography prints untouched; some engines rasterise the grayscale filter poorly. */
+  .card__media img,
+  .gallery__item img,
+  .feature__media img,
+  .event__media img {
+    filter: none !important;
+  }
+
+  .card,
+  .student-card,
+  .event,
+  .feature {
+    box-shadow: none;
+    border: 1px solid #999;
+    break-inside: avoid;
+  }
+
+  .accordion__panel {
+    display: block !important;
+  }
+
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.75em;
+    color: #444;
+  }
+}
+
+/* Credits split into columns on screen only; paper reflows to one. */
+@media screen and (min-width: 768px) {
+  .credit-list { columns: 2; }
+}
+
+@media screen and (min-width: 1024px) {
+  .credit-list { columns: 3; }
+}
